@@ -1,0 +1,8 @@
+{
+  "title": "Enter customer order",
+  "description": "create customer ship order",
+  "inputType": "text",
+  "createdAt": "2026-04-16T11:49:22.720Z",
+  "updatedAt": "2026-04-16T11:49:22.720Z",
+  "generatedBy": "processvoice"
+}

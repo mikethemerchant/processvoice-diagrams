@@ -1,0 +1,35 @@
+# Generated from: Customer ship order creation process
+
+title: {label: "Create Customer Ship Order"}
+
+start: {shape: oval; label: "Start"}
+end: {shape: oval; label: "End"}
+
+receive\_order: {shape: rectangle; label: "Receive Customer Order"}
+verify\_customer: {shape: rectangle; label: "Verify Customer Info"}
+customer\_valid: {shape: diamond; label: "Customer Valid?"}
+create\_account: {shape: rectangle; label: "Create/Update Account"}
+check\_inventory: {shape: rectangle; label: "Check Inventory"}
+inventory\_available: {shape: diamond; label: "Inventory Available?"}
+backorder: {shape: rectangle; label: "Place on Backorder"}
+notify\_customer: {shape: rectangle; label: "Notify Customer"}
+create\_ship\_order: {shape: rectangle; label: "Create Ship Order"}
+assign\_carrier: {shape: rectangle; label: "Assign Carrier & Method"}
+generate\_label: {shape: rectangle; label: "Generate Shipping Label"}
+dispatch\_order: {shape: rectangle; label: "Dispatch Order"}
+
+start -> receive\_order
+receive\_order -> verify\_customer
+verify\_customer -> customer\_valid
+customer\_valid -> create\_account: {label: "No"}
+customer\_valid -> check\_inventory: {label: "Yes"}
+create\_account -> check\_inventory
+check\_inventory -> inventory\_available
+inventory\_available -> backorder: {label: "No"}
+inventory\_available -> create\_ship\_order: {label: "Yes"}
+backorder -> notify\_customer
+notify\_customer -> end
+create\_ship\_order -> assign\_carrier
+assign\_carrier -> generate\_label
+generate\_label -> dispatch\_order
+dispatch\_order -> end
