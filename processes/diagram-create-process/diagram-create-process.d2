@@ -1,0 +1,20 @@
+# Generated from: Simple diagram creation and viewing workflow
+
+title: |md
+  # Diagram Creation Process
+| { near: top-center }
+
+start: Start {shape: oval}
+create: Click Create Diagram {shape: rectangle}
+describe: Describe the Process {shape: rectangle}
+generate: Click Generate Diagram {shape: rectangle}
+view: View in GitHub {shape: rectangle}
+dashboard: Return to Dashboard {shape: rectangle}
+end: End {shape: oval}
+
+start -> create
+create -> describe
+describe -> generate
+generate -> view
+view -> dashboard
+dashboard -> end
