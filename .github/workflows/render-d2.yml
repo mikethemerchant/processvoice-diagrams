@@ -1,0 +1,63 @@
+name: Render D2 Diagrams
+
+on:
+  push:
+    paths:
+      - 'processes/**/*.d2'
+
+# Prevent concurrent renders from conflicting
+concurrency:
+  group: render-d2
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Install D2
+        run: curl -fsSL https://d2lang.com/install.sh | sh -s --
+
+      - name: Find changed D2 files
+        id: changed
+        run: |
+          CHANGED=$(git diff --name-only HEAD~1 HEAD -- 'processes/**/*.d2' || echo "")
+          if [ -z "$CHANGED" ]; then
+            echo "No D2 files changed"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changed files: $CHANGED"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "$CHANGED" > /tmp/changed_d2_files.txt
+          fi
+
+      - name: Render D2 to SVG
+        if: steps.changed.outputs.has_changes == 'true'
+        run: |
+          while IFS= read -r d2file; do
+            if [ -f "$d2file" ]; then
+              svgfile="${d2file%.d2}.svg"
+              echo "Rendering: $d2file → $svgfile"
+              d2 --theme 200 "$d2file" "$svgfile"
+            fi
+          done < /tmp/changed_d2_files.txt
+
+      - name: Commit rendered SVGs
+        if: steps.changed.outputs.has_changes == 'true'
+        run: |
+          git config user.name "ProcessVoice Bot"
+          git config user.email "bot@processvoice.com"
+          git add 'processes/**/*.svg'
+          if git diff --staged --quiet; then
+            echo "No SVG changes to commit"
+          else
+            git commit -m "Render: update SVG diagrams [skip ci]"
+            git push
+          fi
