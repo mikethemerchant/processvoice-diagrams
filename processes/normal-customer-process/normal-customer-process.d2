@@ -1,0 +1,26 @@
+# Generated from: Simple order fulfillment process - enter, pick, ship, bill, collect payment
+
+title: Order Fulfillment Process {
+  label: "Order Fulfillment Process"
+}
+
+start: "Start" {
+  shape: oval
+}
+
+enter_order: "Enter Order"
+pick_product: "Pick Product"
+ship_product: "Ship Product"
+bill_customer: "Bill Customer"
+accept_payment: "Accept Payment"
+
+end: "End" {
+  shape: oval
+}
+
+start -> enter_order
+enter_order -> pick_product
+pick_product -> ship_product
+ship_product -> bill_customer
+bill_customer -> accept_payment
+accept_payment -> end

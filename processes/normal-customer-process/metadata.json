@@ -1,0 +1,8 @@
+{
+  "title": "Normal customer process",
+  "description": "enter order, pick product, ship product, bill customer, accept payment",
+  "inputType": "text",
+  "createdAt": "2026-04-16T11:50:25.284Z",
+  "updatedAt": "2026-04-16T11:50:25.284Z",
+  "generatedBy": "processvoice"
+}
