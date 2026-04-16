@@ -1,0 +1,8 @@
+{
+  "title": "Create Customer",
+  "description": "create customer, enter details, enter credit limits, release for approval.",
+  "inputType": "text",
+  "createdAt": "2026-04-16T12:07:22.569Z",
+  "updatedAt": "2026-04-16T12:07:22.569Z",
+  "generatedBy": "processvoice"
+}

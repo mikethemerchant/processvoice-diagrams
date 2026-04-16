@@ -1,0 +1,18 @@
+# Generated from: Customer creation process with approval workflow
+
+title: Customer Creation Process {
+  label: "Customer Creation Process"
+}
+
+Start: Start {shape: oval}
+Create Customer: "Create Customer" {shape: rectangle}
+Enter Details: "Enter Details" {shape: rectangle}
+Enter Credit Limits: "Enter Credit Limits" {shape: rectangle}
+Release for Approval: "Release for Approval" {shape: rectangle}
+End: End {shape: oval}
+
+Start -> Create Customer
+Create Customer -> Enter Details
+Enter Details -> Enter Credit Limits
+Enter Credit Limits -> Release for Approval
+Release for Approval -> End
