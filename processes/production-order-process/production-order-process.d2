@@ -1,0 +1,30 @@
+# Generated from: Simple production order entry, processing, and finished goods placement
+
+title: Production Order Process {
+  label: "Production Order Process"
+}
+
+Start: "Start" {
+  shape: oval
+}
+
+EnterOrder: "Enter Production Order" {
+  shape: rectangle
+}
+
+ProcessOrder: "Process Order" {
+  shape: rectangle
+}
+
+PlaceFinishedGoods: "Place in Finished Goods" {
+  shape: rectangle
+}
+
+End: "End" {
+  shape: oval
+}
+
+Start -> EnterOrder
+EnterOrder -> ProcessOrder
+ProcessOrder -> PlaceFinishedGoods
+PlaceFinishedGoods -> End

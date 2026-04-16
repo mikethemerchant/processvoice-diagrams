@@ -1,0 +1,8 @@
+{
+  "title": "Production Order Process",
+  "description": "enter production order, process order, place in finished goods.",
+  "inputType": "text",
+  "createdAt": "2026-04-16T12:17:44.220Z",
+  "updatedAt": "2026-04-16T12:17:44.220Z",
+  "generatedBy": "processvoice"
+}
